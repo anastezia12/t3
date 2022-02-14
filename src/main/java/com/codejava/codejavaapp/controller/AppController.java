@@ -15,19 +15,20 @@ import java.util.List;
 public class AppController {
     @Autowired
     private UserRepository userRepository;
+
     @GetMapping("")
-    public String viewHomePage(){
+    public String viewHomePage() {
         return "index";
     }
 
     @GetMapping("/register")
-    public String showSingUpForm(Model model){
+    public String showSingUpForm(Model model) {
         model.addAttribute("user", new User());
         return "singupForm";
     }
 
     @PostMapping("/process_register")
-    public String processRegistration(User user){
+    public String processRegistration(User user) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String encodedPassword = encoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
@@ -37,7 +38,7 @@ public class AppController {
     }
 
     @GetMapping("/users")
-    public String viewUsersList(Model model){
+    public String viewUsersList(Model model) {
         List<User> userList = userRepository.findAll();
         model.addAttribute("listUsers", userList);
         return "users";
