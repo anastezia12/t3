@@ -31,9 +31,7 @@
                 <th>Status</th>
                 <th>last Login</th>
                 <th>first Login</th>
-                <th>  <label class="container" >Check all
-                    <input type="checkbox" id="option-all" onchange="checkAll(this)" >
-                    <span class="checkmark"></span>
+                <th>  <input type="checkbox" onClick="toggle(this)" /> Toggle All<br/>
                 </label>
                 </th>
             </tr>
@@ -47,10 +45,7 @@
                 <td th:text="${user.lastLogin}">lastLogin</td>
                 <td th:text="${user.firstLogin}">firstLogin</td>
                 <td>
-                    <label class="container">
-                    <input type="checkbox" >
-                    <span class="checkmark"></span>
-                    </label>
+                    <input type="checkbox" name="foo" value="bar1"> <br/>
                 </td>
             </tr>
             </tbody>
@@ -58,6 +53,16 @@
     </div>
 
 
+
+
+    <script language="JavaScript">
+        function toggle(source) {
+            checkboxes = document.getElementsByName('foo');
+            for(var i=0, n=checkboxes.length;i<n;i++) {
+                checkboxes[i].checked = source.checked;
+            }
+        }
+    </script>
 </div>
 </body>
 </html>
