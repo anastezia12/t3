@@ -3,7 +3,9 @@
 <head>
     <title>All users </title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </head>
 <body>
 <div class = "container text-center">
@@ -13,6 +15,8 @@
             <input type="submit" value="Sign Out" class="btn btn-primary"/>
         </form>
     </div>
+    <div  th:action="@{/users}" method="post" th:object="${users}"/>
+
 
     <div>
         <h1>List of all users </h1>
@@ -24,6 +28,14 @@
                 <th>User ID</th>
                 <th>E-mail</th>
                 <th>NickName</th>
+                <th>Status</th>
+                <th>last Login</th>
+                <th>first Login</th>
+                <th>  <label class="container" >Check all
+                    <input type="checkbox" id="option-all" onchange="checkAll(this)" >
+                    <span class="checkmark"></span>
+                </label>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -31,6 +43,15 @@
                 <td th:text="${user.id}">User ID</td>
                 <td th:text="${user.email}">E-mail</td>
                 <td th:text="${user.nickName}">NickName</td>
+                <td th:text="${user.block}">Status</td>
+                <td th:text="${user.lastLogin}">lastLogin</td>
+                <td th:text="${user.firstLogin}">firstLogin</td>
+                <td>
+                    <label class="container">
+                    <input type="checkbox" >
+                    <span class="checkmark"></span>
+                    </label>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -38,6 +59,5 @@
 
 
 </div>
-
 </body>
 </html>
